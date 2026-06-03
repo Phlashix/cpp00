@@ -1,17 +1,25 @@
+// PhoneBook.hpp
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-#include <iostream>
-#include <string>
+# include "contact.hpp"
 
-using namespace std;
+class PhoneBook {
+private:
+    Contact _contacts[8];
+    int     _count;
+    int     _oldest;
 
-class phonebook
-{
-	public:
-		contact()
-		{
-			_id;
-			name;
-		}
-}
+public:
+    PhoneBook();
 
-// c++ -Wall -std=c++98 megaphone.cpp
+    void addContact();
+    void searchContact() const;
+
+private:
+    void    displayList() const;
+    void    displayContact(int index) const;
+    std::string truncate(const std::string &s) const;
+};
+
+#endif

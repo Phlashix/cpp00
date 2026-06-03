@@ -1,0 +1,23 @@
+#include <iostream>
+#include "phonebook.hpp"
+
+int main() 
+{
+    PhoneBook   pb;
+    std::string cmd;
+
+    while (true) 
+    {
+        std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+        std::getline(std::cin, cmd);
+
+        if (cmd == "ADD")
+            pb.addContact();
+        else if (cmd == "SEARCH")
+            pb.searchContact();
+        else if (cmd == "EXIT")
+            break;
+        // tout autre input → ignoré silencieusement
+    }
+    return 0;
+}
