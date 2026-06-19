@@ -2,6 +2,7 @@
 # define CONTACT_HPP
 
 # include <string>
+# include <cstdlib>
 
 class Contact {
 private:

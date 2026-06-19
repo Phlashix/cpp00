@@ -6,7 +6,17 @@ Contact::Contact() {}
 void Contact::setFirstName(const std::string &value)     { _firstName     = value; }
 void Contact::setLastName(const std::string &value)      { _lastName      = value; }
 void Contact::setNickname(const std::string &value)      { _nickname      = value; }
-void Contact::setPhoneNumber(const std::string &value)   { _phoneNumber   = value; }
+void Contact::setPhoneNumber(const std::string &value)
+{
+    if (value.size() != 10)
+        return ;
+    for (size_t i = 0; i < value.size(); i++)
+    {
+        if (value[i] < '0' || value[i] > '9')
+            return ;
+    }
+    _phoneNumber = value;
+}
 void Contact::setDarkestSecret(const std::string &value) { _darkestSecret = value; }
 
 // Getters

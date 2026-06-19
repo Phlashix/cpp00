@@ -14,9 +14,37 @@ static std::string promptField(const std::string &label) {
     std::string value;
     while (value.empty()) {
         std::cout << label << ": ";
-        std::getline(std::cin, value);
+       if (!std::getline(std::cin, value))
+        {
+            std::cout << std::endl;
+            exit(0);
+        }
     }
     return value;
+}
+
+static bool isValidPhone(const std::string &value) {
+    if (value.size() != 10)
+        return false;
+    for (size_t i = 0; i < value.size(); i++)
+        if (value[i] < '0' || value[i] > '9')
+            return false;
+    return true;
+}
+
+static std::string promptPhone() {
+    std::string value;
+    while (true) {
+        std::cout << "Phone number: ";
+        if (!std::getline(std::cin, value))
+        {
+            std::cout << std::endl;
+            exit(0);
+        }
+        if (isValidPhone(value))
+            return value;
+        std::cout << "Invalid phone number (10 digits required)." << std::endl;
+    }
 }
 
 void PhoneBook::addContact() {
@@ -25,9 +53,8 @@ void PhoneBook::addContact() {
     newContact.setFirstName(promptField("First name"));
     newContact.setLastName(promptField("Last name"));
     newContact.setNickname(promptField("Nickname"));
-    newContact.setPhoneNumber(promptField("Phone number"));
+    newContact.setPhoneNumber(promptPhone());
     newContact.setDarkestSecret(promptField("Darkest secret"));
-
     _contacts[_oldest] = newContact;
     _oldest = (_oldest + 1) % 8;
     if (_count < 8)
