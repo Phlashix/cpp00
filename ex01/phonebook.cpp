@@ -107,7 +107,8 @@ void PhoneBook::searchContact() const {
         return;
 
     int index = input[0] - '0';
-    if (input.length() != 1 || index < 1 || index > _count) {
+    if (input.length() != 1 || index < 1 || index > _count)
+    {
         std::cout << "Invalid index." << std::endl;
         return (searchContact());
     }
