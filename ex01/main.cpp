@@ -1,11 +1,14 @@
 #include <iostream>
 #include "phonebook.hpp"
 
-int main() 
+int main(int ac, char **av) 
 {
     PhoneBook   pb;
     std::string cmd;
 
+    (void)av;
+    if (ac != 1)
+        exit(1);
     while (true) 
     {
         std::cout << "Enter command (ADD, SEARCH, EXIT): ";
