@@ -9,13 +9,19 @@ int main()
     while (true) 
     {
         std::cout << "Enter command (ADD, SEARCH, EXIT): ";
-        std::getline(std::cin, cmd);
+        //std::getline(std::cin, cmd);
 
-        if (cmd == "")
+        if (!std::getline(std::cin, cmd))
         {
             std::cout << std::endl;
             exit(0);
         }
+        
+        //if (cmd == "")
+        //{
+        //    std::cout << std::endl;
+        //    exit(0);
+        //}
         if (cmd == "ADD")
             pb.addContact();
         else if (cmd == "SEARCH")

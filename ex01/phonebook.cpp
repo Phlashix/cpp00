@@ -10,15 +10,27 @@ std::string PhoneBook::truncate(const std::string &s) const {
     return s;
 }
 
+static bool isPrintable(const std::string &s) {
+    for (size_t i = 0; i < s.size(); i++)
+    {
+        if (s[i] < 32 || s[i] == 127)
+            return false;
+    }
+    return true;
+}
+
 static std::string promptField(const std::string &label) {
     std::string value;
-    while (value.empty()) {
+    while (value.empty() || !isPrintable(value))
+    {
         std::cout << label << ": ";
        if (!std::getline(std::cin, value))
         {
             std::cout << std::endl;
             exit(0);
         }
+        if (!value.empty() && !isPrintable(value))
+            std::cout << "Invalid characters detected." << std::endl;
     }
     return value;
 }
