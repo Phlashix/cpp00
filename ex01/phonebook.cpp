@@ -102,15 +102,17 @@ void PhoneBook::searchContact() const {
     displayList();
 
     std::string input;
-    std::cout << "Enter index: ";
-    if (!std::getline(std::cin, input) || input.empty())
-        return;
-
-    int index = input[0] - '0';
-    if (input.length() != 1 || index < 1 || index > _count)
+    while (true)
     {
+        std::cout << "Enter index: ";
+        if (!std::getline(std::cin, input) || input.empty())
+            return;
+        int index = input[0] - '0';
+        if (input.length() == 1 && index >= 1 && index <= _count)
+        {
+            displayContact(index - 1);
+            return;
+        }
         std::cout << "Invalid index." << std::endl;
-        return (searchContact());
     }
-    displayContact(index - 1);
 }
